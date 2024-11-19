@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357ABD;
+        }
+        .response {
+            background-color: #e8f4fd;
+            border-left: 5px solid #4a90e2;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .source-docs {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .source-docs h3 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Chatbot</h1>
+        <form method="POST" action="/">
+            <div class="input-group">
+                <label for="question">Ask a question:</label>
+                <input type="text" id="question" name="question" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if user_question %}
+            <div class="response">
+                <h3>Your Question:</h3>
+                <p>{{ user_question }}</p>
+                <h3>Bot Response:</h3>
+                <p>{{ bot_response }}</p>
+            </div>
+        {% endif %}
+
+        {% if source_documents %}
+            <div class="source-docs">
+                <h3>Source Documents:</h3>
+                <ul>
+                    {% for doc in source_documents %}
+                        <li>{{ doc }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
